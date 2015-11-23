@@ -4,6 +4,8 @@
 
 > Angular and html5 native, No jQuery, No dependency.
 
+[Live Demo](http://jsbin.com/kawupikano/1/)
+
 ## Install
 
 > installing via javascript package manager
@@ -26,14 +28,44 @@ angular.module('demoApp', ['angular-files-drop', ...])
 
 ## Usage
 
+#### tl;dr
+
 ```html
 <!-- in html -->
-<div style="height:300px; width:100%; border:3px solid red;" files-drop="onFilesDropped($files, $event)">
-  <span style="color:orange;">files-drop="onFilesDropped($files, $event)"</span>
-  Hey, drop files here!
-  <hr>
-  <img ng-src="{{img.dataURL}}" ng-repeat="img in previews" height="100" width="100" style="object-fit:contain; background: #eee; margin:10px; border:1px solid #999;">
-</div>
+<div files-drop="onFilesDropped($files, $event)">Drop here!</div>
+```
+
+```js
+// in controller
+function DemoController($scope) {
+  $scope.onFilesDropped = function($files, $event) {
+    console.log('$files', $files)
+    console.log('$event', $event)
+
+    $scope.previews = $files // array that contain file instances
+  }
+}
+```
+
+```css
+/* in css */
+.filesDrop.filesDrop--dragover {
+  outline: 1px solid #999;
+}
+```
+
+#### Long (work demo)
+
+```html
+<!-- in html -->
+<body ng-controller="DemoController">
+  <div style="height:300px; width:100%; border:3px solid red;" files-drop="onFilesDropped($files, $event)">
+    <span style="color:orange;">files-drop="onFilesDropped($files, $event)"</span>
+    Hey, drop files here!
+    <hr>
+    <img ng-src="{{img.dataURL}}" ng-repeat="img in previews" height="100" width="100" style="object-fit:contain; background: #eee; margin:10px; border:1px solid #999;">
+  </div>
+</body>
 ```
 
 ```js
@@ -44,11 +76,20 @@ angular.module('demoApp').controller('DemoController', function($scope) {
     console.log('$files', $files)
     console.log('$event', $event)
 
-    $scope.previews = $files
+    $scope.previews = $files // array that contain file instances
   }
 })
 
 angular.bootstrap(document, ['demoApp'])
+```
+
+```css
+/*
+  when you `dragover` the element, it will be apply .files-drop--dragover to it.
+*/
+.filesDrop.filesDrop--dragover {
+  outline: 1px solid #999;
+}
 ```
 
 ## You want to develop, build, and see demo site locally
