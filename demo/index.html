@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+  </head>
+  <body ng-controller="DemoController" style="padding:50px;">
+
+    <div style="height:300px; width:100%; border:3px solid red;" files-drop="onFilesDropped($files, $event)">
+      <span style="color:orange;">files-drop="onFilesDropped($files, $event)"</span>
+      Hey, drop files here!
+      <hr>
+      <img ng-src="{{img.dataURL}}" ng-repeat="img in previews" height="100" width="100" style="object-fit:contain; background: #eee; margin:10px; border:1px solid #999;">
+    </div>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../dist/index.js"></script>
+    <script>
+      angular.module('demoApp', ['angular-files-drop'])
+      angular.module('demoApp').controller('DemoController', function($scope) {
+        $scope.onFilesDropped = function($files, $event) {
+          console.log('$files', $files)
+          console.log('$event', $event)
+
+          $scope.previews = $files
+        }
+      })
+
+      angular.bootstrap(document, ['demoApp'])
+    </script>
+  </body>
+</html>
