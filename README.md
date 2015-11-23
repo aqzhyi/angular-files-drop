@@ -57,7 +57,7 @@ angular.bootstrap(document, ['demoApp'])
 
 ```sh
 # shell
-npm install http-server
+npm install http-server -g
 PORT=12345 http-server .
 open http://127.0.0.1:12345/demo
 ```
