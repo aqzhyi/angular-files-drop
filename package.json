@@ -3,6 +3,20 @@
   "version": "1.0.0",
   "description": "Easily drag files to element and drop them using html5 api.",
   "main": "./dist/index.js",
+  "keywords": [
+    "html5",
+    "dnd",
+    "drag",
+    "drop",
+    "angular",
+    "ng",
+    "upload",
+    "image"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pleasurazy/angular-files-drop.git"
+  },
   "dependencies": {
     "angular": ">=1.2.0 <2.0.0"
   },
