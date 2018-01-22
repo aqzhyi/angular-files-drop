@@ -16,7 +16,8 @@ function directive($q, $parse) {
   }
 
   function link($scope, $element, $attrs) {
-    readAsDataURL = readAsDataURL.bind({$q})
+
+    if ($attrs.filesRead!='false') readAsDataURL = readAsDataURL.bind({$q})
 
     $element.addClass('filesDrop')
     $element[0].addEventListener('dragleave', fileDragleave)
@@ -47,13 +48,16 @@ function directive($q, $parse) {
         return
       }
 
-      let promises = [].reduce.call(files, (prev, file) => {
-        let promise = readAsDataURL(file).then((dataURL) => file.dataURL = dataURL)
-        prev.push(promise)
-        return prev
-      }, [])
-
+      let promises=[];
+      if ($attrs.filesRead!='false') {
+        promises=promises.reduce.call(files, (prev, file) => {
+          let promise = readAsDataURL(file).then((dataURL) => file.dataURL = dataURL)
+          prev.push(promise)
+          return prev
+        }, [])
+      }
       $q.all(promises).then(() => {
+
         $parse($attrs.filesDrop)($scope, {
           $files: files,
           $event: event,

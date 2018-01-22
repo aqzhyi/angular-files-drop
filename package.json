@@ -1,6 +1,6 @@
 {
   "name": "angular-files-drop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Easily drag files to element and drop them using html5 api.",
   "main": "./dist/index.js",
   "keywords": [
